@@ -4,6 +4,10 @@ import Constants from 'expo-constants';
 
 import { width, height } from './constatnts/Layout';
 import Colors from './constatnts/Colors';
+import Header from './components/Header';
+import Screen from './components/Screen';
+
+const FirstScreen = <View><Text>Lol</Text></View>
 
 export default function App() {
   //scrollEnabled?
@@ -11,22 +15,14 @@ export default function App() {
     <View
       style={{ flex: 1 }}
     >
-      <View
-        style={styles.header}>
-        <Text>Header</Text>
-      </View>
+      <Header />
       <ScrollView
         contentContainerStyle={styles.container}
         horizontal
         pagingEnabled
       >
-        <View style={[styles.screen, { backgroundColor: 'green' }]}>
-          <Text>First screen</Text>
-        </View>
-        <View style={[styles.screen, { backgroundColor: 'blue' }]}>
-          <Text>Second screen</Text>
-        </View>
-
+        <Screen title='First screen' color={'green'} data={FirstScreen}/>
+        <Screen title='First screen' color={'blue'} />
       </ScrollView>
     </View>
   );
