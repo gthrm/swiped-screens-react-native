@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { width } from '../constatnts/Layout';
+import DrggableList from '../components/DrggableList';
 
 const Container = styled.View`
     background-color: ${p => p.color ? p.color : 'green'};
@@ -15,13 +16,14 @@ const ScreenText = styled.Text`
     line-height: 26px;
 `
 
-const Screen = ({ title = 'First Screen', style, color, data }) => {
+const Screen = ({ title = 'First Screen', style, color, data: Data }) => {
     return (
         <Container
             color={color}
             style={style}
         >
-            {data ? data : <ScreenText>{title}</ScreenText>}
+            {/* <DrggableList/> */}
+            {Data ? <Data /> : <ScreenText>{title}</ScreenText>}
 
         </Container>
     )

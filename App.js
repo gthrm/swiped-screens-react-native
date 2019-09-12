@@ -6,8 +6,7 @@ import { width, height } from './constatnts/Layout';
 import Colors from './constatnts/Colors';
 import Header from './components/Header';
 import Screen from './components/Screen';
-
-const FirstScreen = <View><Text>Lol</Text></View>
+import DrggableList from './components/DrggableList';
 
 export default function App() {
   //scrollEnabled?
@@ -21,7 +20,7 @@ export default function App() {
         horizontal
         pagingEnabled
       >
-        <Screen title='First screen' color={'green'} data={FirstScreen}/>
+        <Screen title='First screen' color={'yellow'} data={DrggableList}/>
         <Screen title='First screen' color={'blue'} />
       </ScrollView>
     </View>
