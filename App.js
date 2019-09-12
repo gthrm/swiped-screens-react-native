@@ -6,6 +6,7 @@ import { width, height } from './constatnts/Layout';
 import Colors from './constatnts/Colors';
 
 export default function App() {
+  //scrollEnabled?
   return (
     <View
       style={{ flex: 1 }}
