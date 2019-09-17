@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 
 const Container = styled.View`
@@ -34,6 +34,8 @@ class DrggableList extends Component {
         }))
     }
 
+
+
     renderItem = ({ item, index, move, moveEnd, isActive }) => {
         return (
             <Item
@@ -45,8 +47,8 @@ class DrggableList extends Component {
             </Item>
         )
     }
-
     render() {
+        const { photo } = this.state
         return (
             <Container>
                 <DraggableFlatList
