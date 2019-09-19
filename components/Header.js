@@ -2,10 +2,10 @@ import React from 'react';
 import Constants from 'expo-constants';
 import styled from 'styled-components';
 
+import ComponentLib from '../ComponentsLib'
 import { width, height } from '../constatnts/Layout';
 
 const Container = styled.View`
-    background-color: #006FBA;
     padding-top: ${Constants.statusBarHeight};
     width: ${width};
     height: ${height * 0.2};
@@ -21,7 +21,7 @@ const HeaderText = styled.Text`
 const Header = ({ title = 'Header' }) => {
     return (
         <Container>
-            <HeaderText>{title}</HeaderText>
+            <ComponentLib.ScreenTitle title={title} icon/>
         </Container>
     )
 }
