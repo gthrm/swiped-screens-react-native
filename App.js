@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, PanResponder, View, ScrollView } from 'react-native';
 import { Asset } from 'expo-asset';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
@@ -55,7 +55,8 @@ class App extends React.Component {
     );
   }
   //scrollEnabled?
-  async loadResourcesAsync () {
+
+  async loadResourcesAsync() {
     await Promise.all([
       Asset.loadAsync([
         require('./assets/splash.png')

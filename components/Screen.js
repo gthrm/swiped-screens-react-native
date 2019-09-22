@@ -64,6 +64,10 @@ class Screen extends React.Component {
             )
     }
 
+    changeStateCheck = (newState) => {
+        this.setState({ checks: newState })
+    }
+
     getImage = async (id) => {
         await this.apiGetImage(id)
             .then(
@@ -91,7 +95,7 @@ class Screen extends React.Component {
             >
 
                 {/* <DrggableList/> */}
-                {Data ? <Data checks={checks} getCheck={this.getCheck.bind(this)} getImage={this.getImage.bind(this)} />
+                {Data ? <Data checks={checks} getCheck={this.getCheck.bind(this)} changeStateCheck={this.changeStateCheck.bind(this)} getImage={this.getImage.bind(this)} />
                     : photo
                         ? <Image
                             style={{ width: 300, height: 300, top: 0, left: 0 }}
