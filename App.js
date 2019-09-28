@@ -11,6 +11,7 @@ import Colors from './constatnts/Colors';
 import Header from './components/Header';
 import Screen from './components/Screen';
 import DrggableList from './components/DrggableList';
+import Calendar from './components/Calendar';
 
 class App extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class App extends React.Component {
           pagingEnabled
         >
           <Screen testProps={testData} title='First screen' data={DrggableList} />
-          <Screen title='First screen' color={'blue'} />
+          <Screen title='First screen' color={'blue'} data={Calendar}/>
         </ScrollView>
       </View>
     );
