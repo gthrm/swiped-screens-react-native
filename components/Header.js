@@ -10,7 +10,7 @@ const Container = styled.View`
     width: ${width};
     height: ${height * 0.2};
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 `
 
 const HeaderText = styled.Text`

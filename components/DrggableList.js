@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import {
-    RefreshControl,
-    LayoutAnimation
+    RefreshControl
 } from 'react-native';
 import Constants from 'expo-constants';
 import styled from 'styled-components'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 
-import ComponentLib from '../ComponentsLib'
+import ComponentLib from '../ComponentsLib';
+import RecyclingPanel from '../components/RecyclingPanel';
 
 const Container = styled.View`
     flex: 1;
     min-width: 100%;
     align-items: center;
     justify-content: center;
+    padding: 10px 20px 0px 20px;
 `
 
 const Item = styled.TouchableOpacity`
@@ -22,24 +23,7 @@ const Item = styled.TouchableOpacity`
     min-width: 100%;
     align-items: center;
     justify-content: center;
-`
-
-const RecyclingPanel = styled.View`
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
-    height: ${p => p.statusBarHeight ? p.statusBarHeight + 40 : 40};
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    background-color: #99b1c6;
-    padding-bottom: ${p => p.statusBarHeight ? p.statusBarHeight : 40};
-`
-
-const TextRecyclingPanel = styled.Text`
-    font-size: 22px;
-    line-height: 26px;
-    color: #ededed;
+    background-color: rgba(255,255,255,.5)
 `
 
 class DrggableList extends Component {
@@ -85,7 +69,6 @@ class DrggableList extends Component {
 
     changeRecyclingPanel = () => {
         const { recyclingPanelIsOpen } = this.state
-        LayoutAnimation.configureNext({ duration: 300, create: { type: 'easeInEaseOut', property: 'opacity' }, update: { type: 'easeInEaseOut', springDamping: 0.4 }, delete: { type: 'easeInEaseOut', property: 'opacity' } });
         this.setState({ recyclingPanelIsOpen: !recyclingPanelIsOpen })
     }
 
@@ -110,9 +93,7 @@ class DrggableList extends Component {
                 {recyclingPanelIsOpen
                     ? <RecyclingPanel
                         statusBarHeight={Constants.statusBarHeight}
-                    >
-                        <TextRecyclingPanel>RecyclingPanel</TextRecyclingPanel>
-                    </RecyclingPanel>
+                    />
                     : null}
             </Container>
         )

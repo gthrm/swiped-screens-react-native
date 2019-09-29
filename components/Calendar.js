@@ -3,7 +3,10 @@ import styled from 'styled-components'
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
 
 const CalendarContainer = styled.View`
-    width: 100%
+    width: 100%;
+    flex: 1;
+    justify-content: flex-start;
+    padding: 10px 20px 0px 20px;
 `
 
 class CalendarItem extends Component {
@@ -22,13 +25,13 @@ class CalendarItem extends Component {
                     // Handler which gets executed on day long press. Default = undefined
                     onDayLongPress={(day) => { console.log('selected day', day) }}
                     // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-                    monthFormat={'yyyy MM'}
+                    monthFormat={'MMMM yyyy'}
                     // Handler which gets executed when visible month changes in calendar. Default = undefined
                     onMonthChange={(month) => { console.log('month changed', month) }}
                     // Hide month navigation arrows. Default = false
-                    hideArrows={true}
+                    hideArrows={false}
                     // Replace default arrows with custom ones (direction can be 'left' or 'right')
-                    renderArrow={(direction) => (<Arrow />)}
+                    // renderArrow={(direction) => (<Arrow />)}
                     // Do not show days of other months in month page. Default = false
                     hideExtraDays={true}
                     // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
