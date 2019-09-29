@@ -1,8 +1,7 @@
 import React from 'react';
 import { AppLoading, Image } from 'react-native'
 import styled from 'styled-components';
-import axios from 'axios'
-import { decode as atob, encode as btoa } from 'base-64'
+import api from '../api';
 
 import { width } from '../constatnts/Layout'
 
@@ -50,7 +49,7 @@ class Screen extends React.Component {
     }
 
     getCheck = async () => {
-        await this.apiGetCheck()
+        await api.apiGetCheck()
             .then(
                 ({ data }) => {
                     console.log('====================================')
@@ -68,20 +67,6 @@ class Screen extends React.Component {
         this.setState({ checks: newState })
     }
 
-    getImage = async (id) => {
-        await this.apiGetImage(id)
-            .then(
-                ({ data }) => {
-                    const photoData = this._imageEncode(data.data.data, data.contentType);
-                    return photoData
-                    // this.setState({ photo: photoData })
-                }
-            )
-            .catch(
-                err => console.log(err)
-            )
-    }
-
     render() {
         console.log('render');
 
@@ -95,7 +80,7 @@ class Screen extends React.Component {
             >
 
                 {/* <DrggableList/> */}
-                {Data ? <Data checks={checks} getCheck={this.getCheck.bind(this)} changeStateCheck={this.changeStateCheck.bind(this)} getImage={this.getImage.bind(this)} />
+                {Data ? <Data checks={checks} getCheck={this.getCheck.bind(this)} changeStateCheck={this.changeStateCheck.bind(this)} />
                     : photo
                         ? <Image
                             style={{ width: 300, height: 300, top: 0, left: 0 }}
@@ -109,34 +94,6 @@ class Screen extends React.Component {
 
             </Container>
         )
-    }
-
-    apiGetImage = (id = '5d812cb81d7189072614d66e') => {
-        // const id = '5d812cb81d7189072614d66e'
-        const basicAuth = 'Basic ' + btoa(name + ':' + password);
-        const request = axios.create({
-            headers: {
-                "Authorization": basicAuth
-            }
-        });
-        return request.get(`${host}:${port}/images/${id}`);
-    }
-
-    apiGetCheck = () => {
-        const basicAuth = 'Basic ' + btoa(name + ':' + password);
-        const request = axios.create({
-            headers: {
-                "Authorization": basicAuth
-            }
-        });
-        return request.get(`${host}:${port}/check`);
-    }
-
-    _imageEncode(arrayBuffer, contentType) {
-        let u8 = new Uint8Array(arrayBuffer)
-        let b64encoded = btoa([].reduce.call(new Uint8Array(arrayBuffer), function (p, c) { return p + String.fromCharCode(c) }, ''))
-        let mimetype = contentType || "image/png"
-        return "data:" + mimetype + ";base64," + b64encoded
     }
 }
 

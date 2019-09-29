@@ -6,8 +6,9 @@ import Constants from 'expo-constants';
 import styled from 'styled-components'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 
-import ComponentLib from '../ComponentsLib';
+import DrggableItem from './DrggableItem';
 import RecyclingPanel from '../components/RecyclingPanel';
+
 
 const Container = styled.View`
     flex: 1;
@@ -27,32 +28,15 @@ const Item = styled.TouchableOpacity`
 `
 
 class DrggableList extends Component {
-
-    state = {
-        recyclingPanelIsOpen: false,
-        refreshing: false,
-        image: undefined
+    constructor(props) {
+        super(props);
+        this.state = {
+            recyclingPanelIsOpen: false,
+            refreshing: false,
+            image: undefined
+        }
     }
 
-    renderItem = ({ item, index, move, moveEnd, isActive }) => {
-        return (
-            <Item>
-                <ComponentLib.LectureItem
-                    isActive={isActive}
-                    onLongPress={move}
-                    onPressOut={moveEnd}
-                    lecture={{
-                        id: item._id,
-                        name: item.description,
-                        title: item.title,
-                        date: item.expiriesDate,
-                        avatarUri: { uri: 'https://picsum.photos/200/300.jpg' }
-                    }}
-
-                />
-            </Item>
-        )
-    }
     _onRefresh = () => {
         this.props.getCheck()
     }
@@ -84,7 +68,7 @@ class DrggableList extends Component {
                         />
                     }
                     data={this.props.checks}
-                    renderItem={this.renderItem}
+                    renderItem={({ item, move, moveEnd, isActive }) => <DrggableItem move={move} moveEnd={moveEnd} isActive={isActive} item={item} />}
                     keyExtractor={(item, index) => `draggable-item-${item._id}`}
                     scrollPercent={5}
                     onMoveBegin={this.onMoveBegin}

@@ -24,10 +24,10 @@ const TextRecyclingPanel = styled.Text`
     line-height: 26px;
     color: #ededed;
 `
-LayoutAnimation.configureNext({ duration: 300, create: { type: 'easeInEaseOut', property: 'opacity' }, update: { type: 'easeInEaseOut', property: 'opacity' }, delete: { type: 'easeInEaseOut', property: 'opacity' } });
+
 
 const RecyclingPanel = ({ statusBarHeight }) => {
-
+    LayoutAnimation.configureNext({ duration: 300, create: { type: 'easeInEaseOut', property: 'opacity' }, update: { type: 'easeInEaseOut', property: 'opacity' }, delete: { type: 'easeInEaseOut', property: 'opacity' } });
     return (
         <RecyclingContainer
             statusBarHeight={statusBarHeight}
