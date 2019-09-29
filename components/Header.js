@@ -21,7 +21,15 @@ const HeaderText = styled.Text`
 const Header = ({ title = 'Header' }) => {
     return (
         <Container>
-            <ComponentLib.ScreenTitle title={title} icon/>
+            <ComponentLib.ScreenTitle
+                title={title}
+                icon
+                rightButton
+                rightButtonIcon={'plus-circle'}
+                style={{ flex: 1, width: '100%' }}
+                onIconPress={() => console.log('onIconPress')}
+                onRightButtonPress={() => console.log('onRightButtonPress')}
+            />
         </Container>
     )
 }

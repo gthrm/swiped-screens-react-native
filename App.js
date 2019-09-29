@@ -50,7 +50,7 @@ class App extends React.Component {
           pagingEnabled
         >
           <Screen testProps={testData} title='First screen' data={DrggableList} />
-          <Screen title='First screen' color={'blue'} data={Calendar}/>
+          <Screen title='First screen' color={'#faecec'} data={Calendar}/>
         </ScrollView>
       </View>
     );

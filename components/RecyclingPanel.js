@@ -7,6 +7,8 @@ import styled from 'styled-components';
 
 
 const RecyclingContainer = styled.View`
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
     right: 0px;
     left: 0px;
     bottom: 0px;

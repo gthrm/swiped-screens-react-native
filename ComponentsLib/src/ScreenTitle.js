@@ -13,9 +13,20 @@ import TabBarIcon from './TabBarIcon';
 class ScreenTitle extends React.Component {
 
     render() {
-        const { title = "Заголовок", icon = false, onIconPress = () => console.log('onIconPress'), focused = false, type } = this.props
+        const {
+            rightButton,
+            title = "Заголовок",
+            icon = false,
+            onIconPress = () => console.log('onIconPress'),
+            focused = false,
+            type,
+            onRightButtonPress = () => console.log('onRightButtonPress'),
+            style,
+            rightButtonIcon='plus-circle'
+        } = this.props
         return (
             <TouchableOpacity
+                style={[{ ...style }, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}
                 activeOpacity={0.8}
                 onPress={onIconPress}
             >
@@ -26,7 +37,11 @@ class ScreenTitle extends React.Component {
                         fontFamily: "sf-ui-display-semibold"
                     }}>{title}</Text>
 
-                    {icon ? <RenderIcon onIconPress={onIconPress} focused={focused} /> : null}
+                    {icon ? <RenderIcon onIconPress={onIconPress} focused={focused} styleContainer={{ flex: 0 }} /> : null}
+                    
+                </View>
+                <View style={{ flex: 0.2, paddingLeft: type === 2 ? 0 : 25, paddingTop: type === 2 ? 0 : 22, flexDirection: 'row', alignItems: 'center' }}>
+                    {rightButton ? <RenderIcon onIconPress={onRightButtonPress} nameIcon={rightButtonIcon} focused={focused} /> : null}
                 </View>
             </TouchableOpacity>
         )
@@ -63,18 +78,23 @@ class RenderIcon extends React.Component {
         }
     }
     render() {
-        const { onIconPress = () => console.log('onIconPress') } = this.props
+        const {
+            onIconPress = () => console.log('onIconPress'),
+            nameIcon = 'chevron-right',
+            style,
+            styleContainer
+        } = this.props
         return (
-            <Animated.View style={this.rotateAndTranslate}>
+            <Animated.View style={[this.rotateAndTranslate, { ...styleContainer }]}>
                 <TouchableOpacity
-                    style={{ paddingHorizontal: 10, alignItems: 'flex-end', justifyContent: 'flex-end' }}
+                    style={[{ ...style }, { paddingHorizontal: 10, alignItems: 'flex-end', justifyContent: 'flex-end' }]}
                     onPress={onIconPress}
                 >
                     <TabBarIcon
                         tintColor={Colors.textColor}
                         size={20}
                         focused={true}
-                        name={'chevron-right'}
+                        name={nameIcon}
                     />
                 </TouchableOpacity>
             </Animated.View>
